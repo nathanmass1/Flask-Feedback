@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Secret {% endblock %}
+
+{% block content %}
+
+<h1> Hello {{ user.first_name }} </h1>
+
+        <form class="form" action="/users/{{ user.username }}/feedback/add">
+            <button type="submit" class="btn btn-primary"> Add Feedback</button>
+        </form>
+        <form class="form" method="POST" action="/users/{{ user.username }}/delete">
+        <button type="submit" class="btn btn-danger"> Delete User</button>
+        </form>
+<h2> You're username is: {{user.username }} </h2>
+<h2> You're email is: {{user.email }} </h2>
+<h2> You're last name is: {{user.last_name }} </h2>
+
+<br>
+
+{% for feedback in user.feedback %}
+<p>
+    {{ feedback.id }}
+    {{ feedback.title }}
+    {{ feedback.content }}
+    {{ feedback.username }}
+</p>
+<form class="form" action="/feedback/{{ feedback.id }}/update">
+    <button type="submit" class="btn btn-primary"> Edit</button>
+</form>
+<form class="form" method="POST" action="/feedback/{{ feedback.id }}/delete">
+<button type="submit" class="btn btn-danger"> Delete</button>
+</form>
+
+{% endfor %}
+
+
+{% endblock %}

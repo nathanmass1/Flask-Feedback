@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/feedback.css">
+    <title>{% block title %}Feedback {% endblock %} </title>
+</head>
+
+<body>
+
+    {% for msg in get_flashed_messages() %}
+    <h2>{{ msg }}</h2>
+    {% endfor %}
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <ul class="navbar-nav">
+            {% if 'username' in session %}
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="/secret">Secret</a></li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% block content %}
+
+
+    {% endblock %}
+    </div>
+
+
+</body>
+<script src="http://unpkg.com/jquery"></script>
+<script src="/static/feedback.js"></script>
+
+</html>
